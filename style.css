@@ -1,0 +1,139 @@
+html {
+  --bg: #fff;
+  color-scheme: light dark;
+  font: 16px/150% sans-serif;
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg: #121212; /* same as chrome's default dark mode */
+  }
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+#drop {
+  position: fixed;
+  inset: 0;
+  user-select: none;
+  touch-action: none;
+  box-shadow: inset 0 0 0 10px rgba(50,150,255,.75);
+}
+
+#home {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  align-items: center;
+}
+
+#home p {
+  margin: 10px 0 0;
+}
+
+#home a {
+  display: inline-flex;
+}
+
+#output {
+  display: block;
+}
+
+#tree {
+  display: block;
+  position: fixed;
+  inset: 0 auto auto 0;
+  padding: 25px 0 25px 25px;
+  width: 45%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+#tree a {
+  display: inline-flex;
+  margin: 0 10px 10px 0;
+  padding: 5px 10px;
+  border: 2px solid rgba(127,127,127,.5);
+  border-radius: 5px;
+  background: var(--bg, transparent);
+  text-decoration: none;
+}
+
+#tree a.active {
+  border-color: currentColor;
+  z-index: 999;
+}
+
+#hex {
+  padding: 25px 25px 25px 50%;
+  font-family: monospace;
+}
+
+#hex div[data-type] {
+  padding: 25px 0;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  width: min-content;
+  line-height: 1;
+  position: relative;
+}
+
+#hex div[data-type="global-palette"],
+#hex div[data-type="local-palette"] {
+  grid-template-columns: repeat(15, 1fr);
+}
+
+#hex div[data-type]::before {
+  position: absolute;
+  inset: 2px auto auto 2px;
+  content: attr(data-type);
+  color: #7f7f7f;
+  white-space: nowrap;
+}
+
+#hex span[data-offset] {
+  padding: 2px;
+}
+
+#hex div[data-type="screen"] span[data-offset]:nth-child(2),
+#hex div[data-type="screen"] span[data-offset]:nth-child(4),
+#hex div[data-type="control"] span[data-offset]:nth-child(3),
+#hex div[data-type="control"] span[data-offset]:nth-child(7),
+#hex div[data-type="application"] span[data-offset]:nth-child(2),
+#hex div[data-type="application"] span[data-offset]:nth-child(3),
+#hex div[data-type="application"] span[data-offset]:nth-child(14),
+#hex div[data-type="application"] span[data-offset]:nth-child(16),
+#hex div[data-type="application"] span[data-offset]:nth-child(18),
+#hex div[data-type="global-palette"] span[data-offset]:nth-child(3n),
+#hex div[data-type="local-palette"] span[data-offset]:nth-child(3n),
+#hex div[data-type="image-descriptor"] span[data-offset]:nth-child(2n+1),
+#hex div[data-type="image-data"] span[data-offset]:nth-child(1),
+#hex div[data-type="image-data"] span[data-offset]:nth-child(2) {
+  margin-right: 8px;
+}
+#hex div[data-type="image-data"] span[data-offset]:nth-last-child(1) {
+  margin-left: 8px;
+}
+
+#arrow {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+[hidden] {
+  display: none !important;
+}
