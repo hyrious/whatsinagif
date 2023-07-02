@@ -424,14 +424,14 @@ function refresh() {
 
   var $loop   = $left.appendChild(h('a', { href: 'javascript:void 0' }))
   if ('loop_count' in gif.info) {
-    $loop.textContent = 'loop (0 = inf): ' + gif.info.loop_count
+    $loop.textContent = 'loop: ' + (gif.info.loop_count || 'inf')
     link($loop, 'application', 16, 2)
   } else {
     $loop.hidden = true
   }
 
   var disposals = [
-    'clear', // 0 - clear the canvas
+    'noop',  // 0 - ?
     'keep',  // 1 - keep last canvas
     'bg',    // 2 - fill canvas with background color
     'last'   // 3 - restore to nearest frame with disposal = 1
